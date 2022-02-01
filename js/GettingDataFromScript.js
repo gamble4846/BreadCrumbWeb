@@ -1,7 +1,16 @@
-function GetAndSaveData(){
-    script = "https://script.google.com/macros/s/AKfycbwJwytNRVikZ4wT7sNOvtjlOYffRswz8lS3gUVmer8bMisnqD5tjYjJsbVTUx1425kN/exec";
-    getDataFromScript(script, function() {console.log("getDataFromScript");});
+$( document ).ready(function() {
+    $("#script_link").val(getCookie("script_link_cookie"));
+});
+
+function AddDataToCookie(){
+    script = $("#script_link").val();
+    document.cookie = "script_link_cookie="+$("#script_link").val();;
 }
+
+function GetAndSaveData(){
+    script = $("#script_link").val();
+    getDataFromScript(script, function() {console.log("getDataFromScript");});
+};
 
 function getDataFromScript(script, _callback){
     $.get(script, function(data) {
@@ -9,12 +18,18 @@ function getDataFromScript(script, _callback){
         AddingtoDataBase(data, function() {console.log("AddingtoDataBase");});
     });
     _callback();
-}
+};
 
 function AddingtoDataBase(data,_callback){
     let db = new Localbase('BreadCrumb_Local_DB');
     db.collection('all_Data').delete()
-    db.collection('all_Data').add(data);
+    db.collection('all_Data').add(data,'my-key');
     console.log("AddingtoDataBase - Done");
     _callback();    
-}
+};
+
+function getCookie(name) {
+    const value = `; ${document.cookie}`;
+    const parts = value.split(`; ${name}=`);
+    if (parts.length === 2) return parts.pop().split(';').shift();
+};

@@ -10,8 +10,12 @@
     <!------------------------------------------->
 </head>
 <body>
-    <div class="container">
-        <button onclick="GetAndSaveData()">GetData</button>
+    <div class="container mt-5">
+        <form>
+            <input type="text" id="script_link" class="form-control">
+        </form>
+        <button onclick="AddDataToCookie()" class="btn btn-danger">Save</button><br><br>
+        <button onclick="GetAndSaveData()" class="btn btn-primary">GetData</button>
     </div>
     <!------------------JS----------------------->
     <script src="js/jquery-3.6.0.js"></script>
