@@ -5,11 +5,11 @@ $( document ).ready(function() {
         all_Data = all_Data[0];
         titles_data = all_Data.Books.Titles;
         console.log(titles_data);
-        Movies_Titles_Maniputlating(titles_data);
+        Books_Titles_Maniputlating(titles_data);
     });
 });
 
-function Movies_Titles_Maniputlating(titles_data){
+function Books_Titles_Maniputlating(titles_data){
     for(let i=0; i<titles_data.length; i++){
         for(let j=0; j<(titles_data[i].DATA).length; j++){
             innertable += "<tr><td><a href='book_openedBook.html?book_id="+ titles_data[i].DATA[j].Book_Id +"&book_serverid="+ titles_data[i].Server_ID +"'>"+titles_data[i].DATA[j].Book_Name+"</a></td></tr>";
