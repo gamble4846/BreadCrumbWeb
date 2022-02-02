@@ -12,7 +12,7 @@ $( document ).ready(function() {
 function Tvshow_Titles_Maniputlating(titles_data){
     for(let i=0; i<titles_data.length; i++){
         for(let j=0; j<(titles_data[i].DATA).length; j++){
-            innertable += "<tr><td><a href='openedTvShow.html?tvshow_id="+ titles_data[i].DATA[j].Series_Id +"&tvshow_serverid="+ titles_data[i].Server_ID +"'>"+titles_data[i].DATA[j].Series_MainName+"</a></td></tr>";
+            innertable += "<tr><td><a href='tv_openedTvShow.html?tvshow_id="+ titles_data[i].DATA[j].Series_Id +"&tvshow_serverid="+ titles_data[i].Server_ID +"'>"+titles_data[i].DATA[j].Series_MainName+"</a></td></tr>";
         }
     }
     $("#tvshows_titles_table").html(innertable);

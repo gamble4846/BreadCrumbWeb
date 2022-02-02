@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bread Crumb</title>
+    <!------------------STYLES------------------->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/Common_CSS.css">
+    <!------------------------------------------->
+</head>
+<body>
+    <div id="header"></div>
+    <div class="container mt-5 mb-5">
+        <h3 class="pointer">Opened Movies</h3>
+        <h5 id="movie_name"></h5>
+        <table class="table table-responsive" id="links_table">
+
+        </table>
+
+        <div class="modal animate__animated animate__bounceInRight fade" id="Opened_Link_modal" tabindex="-1">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="episode_id_op_link">Episode Name</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <table class="table table-responsive" id="opened_links_table">
+                        </table>
+                    </div>
+                    <div class="container p-2" id="div_links_buttons">
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="footer"></div>
+    <!------------------JS----------------------->
+    <script src="js/jquery-3.6.0.js"></script>
+    <script src="js/bootstrap.bundle.js"></script>
+    <script src="js/localbase.dev.js"></script>
+    <script src="js/header_footer_loader.js"></script>
+    <script src="js/opened_movie_javascript.js"></script>
+    <!------------------------------------------->
+</body>
+</html>
