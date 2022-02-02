@@ -4,7 +4,7 @@ $( document ).ready(function() {
 
 function AddDataToCookie(){
     script = $("#script_link").val();
-    document.cookie = "script_link_cookie="+$("#script_link").val();;
+    document.cookie = "script_link_cookie="+$("#script_link").val() + "expires=Fri, 31 Dec 9999 23:59:59 GMT";
 }
 
 function GetAndSaveData(){
