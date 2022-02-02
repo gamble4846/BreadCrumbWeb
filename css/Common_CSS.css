@@ -9,3 +9,7 @@
 }
 
 .pointer {cursor: pointer;}
+
+.animate__animated{
+    animation-duration: 0.4s !important;
+}

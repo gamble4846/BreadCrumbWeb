@@ -6,15 +6,53 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bread Crumb</title>
     <!------------------STYLES------------------->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
     <link rel="stylesheet" href="css/bootstrap.css">
-    <link href="css/Common_CSS.css">
+    <link rel="stylesheet" href="css/Common_CSS.css">
     <!------------------------------------------->
 </head>
 <body>
     <div id="header"></div>
-    <div class="container">
-        <h3>Opened TvShows</h3>
+    <div class="container mt-5 mb-5">
+        <h3 class="pointer">Opened TvShows</h3>
         <h5 id="tvshow_name"></h5>
+        <select id="seasons_select" class="form-control" onchange=Get_Current_Episdoes(this.value)></select>
+        <table class="table table-responsive" id="episodes_table">
+
+        </table>
+  
+        <div class="modal animate__animated animate__bounceInLeft fade" id="Links_modal" tabindex="-1">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="episode_name">Episode Name</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <table class="table table-responsive" id="links_table">
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal animate__animated animate__bounceInRight fade" id="Opened_Link_modal" tabindex="-1">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="episode_id_op_link">Episode Name</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <table class="table table-responsive" id="opened_links_table">
+                        </table>
+                    </div>
+                    <div class="container p-2" id="div_links_buttons">
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
     <div id="footer"></div>
     <!------------------JS----------------------->
