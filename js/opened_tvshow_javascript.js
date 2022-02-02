@@ -3,6 +3,8 @@ var tvshow_id_url;
 var tvshow_server_id_url;
 var current_episodes;
 var current_links;
+var tvshow_title_glob;
+var current_episode;
 
 $( document ).ready(function() {
     let db = new Localbase('BreadCrumb_Local_DB');
@@ -81,6 +83,7 @@ function Get_Current_Links(Episode_ID){
 }
 
 function Tvshow_Title_Manipulating(tvshow_title){
+    tvshow_title_glob = tvshow_title;
     console.log(tvshow_title);
     $("#tvshow_name").html(tvshow_title.Series_MainName);
 }
@@ -163,7 +166,7 @@ function LinkClicked(tvshow_link_id){
     //console.log(innertablestr);
 
     $('#opened_links_table').html(innertablestr);
-    $('#episode_id_op_link').html(current_link.Episode_Id);
+    $('#episode_id_op_link').html(current_episode.Episode_Name);
     CreateButtons(tvshow_link_id);
     $('#Opened_Link_modal').modal('toggle');
 }
