@@ -1,6 +1,6 @@
 var titles_data;
 var links_data;
-var movie_title_glob;
+var game_title_glob;
 var current_link;
 
 $( document ).ready(function() {
@@ -8,18 +8,24 @@ $( document ).ready(function() {
     db.collection('all_Data').get().then(all_Data_x => {
         all_Data = all_Data_x[0];
 
-        titles_data = all_Data.Movies.Titles;
-        links_data = all_Data.Movies.Links;
+        titles_data = all_Data.Games.Titles;
+        links_data = all_Data.Games.Links;
+
+        // console.log(titles_data);
+        // console.log(links_data);
 
         url_data = (window.location.href).split("?")[1].split("&");
-        movie_id_url = url_data[0].split("=")[1];
-        movie_server_id_url = url_data[1].split("=")[1];
+        game_id_url = url_data[0].split("=")[1];
+        game_server_id_url = url_data[1].split("=")[1];
+
+        console.log(game_id_url);
+        // console.log(game_server_id_url);
 
         for(let i=0; i<titles_data.length; i++){
-            if(titles_data[i].Server_ID == movie_server_id_url){
+            if(titles_data[i].Server_ID == game_server_id_url){
                 for(let j=0; j<titles_data[i].DATA.length; j++){
-                    if(titles_data[i].DATA[j].Movies_Id == movie_id_url){
-                        Movie_Title_Manipulating(titles_data[i].DATA[j]);
+                    if(titles_data[i].DATA[j].Game_Id == game_id_url){
+                        Game_Title_Manipulating(titles_data[i].DATA[j]);
                     }
                 }
                 break;
@@ -28,34 +34,34 @@ $( document ).ready(function() {
 
         current_links = [];
         for(let i=0; i<links_data.length; i++){
-            if(links_data[i].Server_ID == movie_server_id_url){
+            if(links_data[i].Server_ID == game_server_id_url){
                 for(let j=0; j<links_data[i].DATA.length; j++){
-                    if(links_data[i].DATA[j].Movies_Id == movie_id_url){
+                    if(links_data[i].DATA[j].Game_Id == game_id_url){
                         current_links.push(links_data[i].DATA[j]);
                     }
                 }
                 break;
             }
         }
-        Movie_Links_Manipulating(current_links);
+        Game_Links_Manipulating(current_links);
     });
 });
 
-function Movie_Title_Manipulating(movie_title){
-    movie_title_glob = movie_title;
-    //console.log(movie_title);
-    $("#movie_name").html(movie_title.Movies_MainName);
+function Game_Title_Manipulating(game_title){
+    game_title_glob = game_title;
+    console.log(game_title);
+    $("#game_name").html(game_title.Game_Name);
 };
 
-function Movie_Links_Manipulating(movie_links){
-    //console.log(movie_links);
+function Game_Links_Manipulating(game_links){
+    console.log(game_links);
 
     innertablestr = "<tbody>";
-    for(let i=0; i<movie_links.length; i++){
-        innertablestr += "<tr class='pointer' onclick='LinkClicked("+ movie_links[i].Link_Id +")'>";
-        innertablestr += "<td>" + movie_links[i].Link_Language + "</td>";
-        innertablestr += "<td>" + movie_links[i].Link_Quality + "</td>";
-        innertablestr += "<td>" + movie_links[i].Streamable + "</td>";
+    for(let i=0; i<game_links.length; i++){
+        innertablestr += "<tr class='pointer' onclick='LinkClicked("+ game_links[i].Link_Id +")'>";
+        innertablestr += "<td>" + game_links[i].Link_Name + "</td>";
+        innertablestr += "<td>" + game_links[i].Link_Size + "</td>";
+        innertablestr += "<td>" + game_links[i].Machine + "</td>";
         innertablestr += "</tr>";
     }
     innertablestr += "</tbody>";
@@ -63,39 +69,35 @@ function Movie_Links_Manipulating(movie_links){
     $("#links_table").html(innertablestr);
 };
 
-function LinkClicked(movie_link_id){
+function LinkClicked(game_link_id){
     for(let i=0; i<current_links.length; i++){
-        if(current_links[i].Link_Id == movie_link_id){
+        if(current_links[i].Link_Id == game_link_id){
             current_link = current_links[i];
         }
     }
     //console.log(current_link);
     
     innertablestr = "<tbody>";
-    innertablestr += "<tr><td>Link_Language: </td>";
-    innertablestr += "<td>" + current_link.Link_Language + "</td></tr>";
+    innertablestr += "<tr><td>Machine: </td>";
+    innertablestr += "<td>" + current_link.Machine + "</td></tr>";
     
-    innertablestr += "<tr><td>Link_Quality: </td>";
-    innertablestr += "<td>" + current_link.Link_Quality + "</td></tr>";
+    innertablestr += "<tr><td>Link_Name: </td>";
+    innertablestr += "<td>" + current_link.Link_Name + "</td></tr>";
 
     innertablestr += "<tr><td>Link_Size: </td>";
     innertablestr += "<td>" + current_link.Link_Size + "</td></tr>";
 
-    innertablestr += "<tr><td>Link_Subtitles: </td>";
-    innertablestr += "<td>" + current_link.Link_Subtitles + "</td></tr>";
-
-    innertablestr += "<tr><td>Streamable: </td>";
-    innertablestr += "<td>" + current_link.Streamable + "</td></tr>";
-
-    innertablestr += "<tr><td>Password: </td>";
+    innertablestr += "<tr><td>Link_Password: </td>";
     innertablestr += "<td>" + current_link.Link_Password + "</td></tr>";
-    innertablestr += "</tbody>";
 
+    innertablestr += "<tr><td>Link_Desc: </td>";
+    innertablestr += "<td>" + current_link.Link_Desc + "</td></tr>";
+    innertablestr += "</tbody>";
 
     //console.log(innertablestr);
 
     $('#opened_links_table').html(innertablestr);
-    $('#episode_id_op_link').html(movie_title_glob.Movies_MainName);
+    $('#episode_id_op_link').html(game_title_glob.Game_Name);
     CreateButtons();
     $('#Opened_Link_modal').modal('toggle');
 };

@@ -155,6 +155,9 @@ function LinkClicked(tvshow_link_id){
 
     innertablestr += "<tr><td>Streamable: </td>";
     innertablestr += "<td>" + current_link.Streamable + "</td></tr>";
+
+    innertablestr += "<tr><td>Password: </td>";
+    innertablestr += "<td>" + current_link.Link_Password + "</td></tr>";
     innertablestr += "</tbody>";
 
     //console.log(innertablestr);
