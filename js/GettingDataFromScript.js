@@ -25,7 +25,8 @@ function AddingtoDataBase(data,_callback){
     db.collection('all_Data').delete()
     db.collection('all_Data').add(data,'my-key');
     console.log("AddingtoDataBase - Done");
-    _callback();    
+    _callback();
+    alert("done"); 
 };
 
 function getCookie(name) {

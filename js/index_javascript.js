@@ -1,4 +1,5 @@
 $( document ).ready(function() {
+    console.log('starting');
     let db = new Localbase('BreadCrumb_Local_DB');
     db.collection('all_Data').get().then(all_Data => {
         innertable = "";
