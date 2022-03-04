@@ -1,10 +1,11 @@
 $( document ).ready(function() {
     $("#script_link").val(getCookie("script_link_cookie"));
+    $("#google_api_link").val(getCookie("google_api_link_cookie"));
 });
 
 function AddDataToCookie(){
-    script = $("#script_link").val();
     document.cookie = "script_link_cookie="+$("#script_link").val() + "; expires=Fri, 31 Dec 9999 23:59:59 GMT";
+    document.cookie = "google_api_link_cookie="+$("#google_api_link").val() + "; expires=Fri, 31 Dec 9999 23:59:59 GMT";
 }
 
 function GetAndSaveData(){

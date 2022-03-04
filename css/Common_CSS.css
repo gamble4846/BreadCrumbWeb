@@ -1,15 +1,108 @@
+:root {
+    --blue-leave-1: rgb(194,207,223);
+    --blue-leave-2: #006A9A;
+    --blue-leave-3: #0e1b27;
+    --blue-leave-4: #002F3F;
+    --blue-leave-5: #000D15;
+    --blue-leave-6: #5D7DA3;
+    --blue-leave-7: #87AAD0;
+}
+
 ::-webkit-scrollbar {
     -webkit-appearance: none;
     width: 7px;
+    background-color: var(--blue-leave-3);
 }
 
 ::-webkit-scrollbar-thumb {
-    border-radius: 4px;
-    background-color: rgba(0,0,0,.5);
+    background-color: var(--blue-leave-6);
 }
 
 .pointer {cursor: pointer;}
 
 .animate__animated{
     animation-duration: 0.4s !important;
+}
+
+.bg-dark-blue{
+    background-color: var(--blue-leave-5);
+}
+
+.mh-60{
+    min-height: 60vh;
+}
+
+.footer-section-header{
+    font-size: 1.3rem;
+}
+
+.footer-section-header{
+    font-size: 1.3rem;
+    color: var(--blue-leave-6);
+}
+
+.footer-section-item{
+    color: var(--blue-leave-1);
+}
+
+.footer-section-content{
+    color: var(--blue-leave-1);
+}
+
+.footer-rights{
+    color: var(--blue-leave-6);
+}
+
+.bg-dark-blue-2{
+    background-color: var(--blue-leave-3);
+}
+
+.text-white-imp{
+    color: pink !important;
+}
+
+.white-hr {
+    border: none;
+    height: 1px;
+    color: white;
+    background-color: white;
+}
+
+.btn-light-blue{
+    background-color: var(--blue-leave-6);
+    color: var(--blue-leave-5);
+}
+
+.btn-light-blue2{
+    background-color: var(--blue-leave-7);
+    color: var(--blue-leave-5);
+}
+
+.btn-light-blue:hover{
+    background-color: var(--blue-leave-5);
+    color: white;
+}
+
+.btn-light-blue2:hover{
+    background-color: var(--blue-leave-5);
+    color: white;
+}
+
+.img-custom{
+    width: 100px;
+}
+
+.stick-top{
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 2;
+}
+
+#header{
+    margin-bottom: 110px;
+}
+
+body{
+    background-color: var(--blue-leave-3);
 }
