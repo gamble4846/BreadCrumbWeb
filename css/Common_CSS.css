@@ -29,7 +29,7 @@
 }
 
 .mh-60{
-    min-height: 60vh;
+    min-height: 50vh;
 }
 
 .footer-section-header{
@@ -105,4 +105,40 @@
 
 body{
     background-color: var(--blue-leave-3);
+}
+
+.card{
+    width: 100%;
+    cursor: pointer;
+    color: var(--blue-leave-1);
+    background-color: transparent;
+    border: 0px;
+}
+
+.cardPoster{
+    object-fit: cover;
+    width: 100%;
+    border-radius: 5px;
+}
+
+.cardPrimary{
+    display: block;
+    font-size: 20px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.cardSecondaryOne{
+    display: flex;
+    justify-content: left;
+}
+
+.cardSecondaryTwo{
+    display: flex;
+    justify-content: right;
+}
+
+.cardSecondary{
+    font-size: 12px;
 }

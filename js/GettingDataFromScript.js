@@ -1,4 +1,6 @@
-$( document ).ready(function() {
+var notify;
+$(document).ready(function() {
+    notify = new Notify();
     $("#script_link").val(getCookie("script_link_cookie"));
     $("#google_api_link").val(getCookie("google_api_link_cookie"));
 });
@@ -10,12 +12,21 @@ function AddDataToCookie(){
 
 function GetAndSaveData(){
     script = $("#script_link").val();
-    getDataFromScript(script, function() {console.log("getDataFromScript");});
+    getDataFromScript(script, function() {
+        notify.render({
+            head: `Database <i class="fas fa-bell"></i>`,
+            content: "Syncying Data from Google Sheets",
+        });
+    });
 };
 
 function getDataFromScript(script, _callback){
     $.get(script, function(data) {
-        console.log("Started");
+        notify.render({
+            head: `Database <i class="fas fa-bell"></i>`,
+            content: "Data Synced from Google Sheets",
+            style: "success",
+        });
         AddingtoDataBase(data, function() {console.log("AddingtoDataBase");});
     });
     _callback();
@@ -25,9 +36,7 @@ function AddingtoDataBase(data,_callback){
     let db = new Localbase('BreadCrumb_Local_DB');
     db.collection('all_Data').delete()
     db.collection('all_Data').add(data,'my-key');
-    console.log("AddingtoDataBase - Done");
     _callback();
-    alert("done"); 
 };
 
 function getCookie(name) {
