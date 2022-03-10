@@ -11,6 +11,7 @@
 ::-webkit-scrollbar {
     -webkit-appearance: none;
     width: 7px;
+    hight: 7px;
     background-color: var(--blue-leave-3);
 }
 
