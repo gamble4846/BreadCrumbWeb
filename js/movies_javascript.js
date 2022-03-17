@@ -91,7 +91,7 @@ function UpdateMovies(){
     $("#all_movies").html(rowHTML);
 }
 
-function ChangeSortingOrder(node){
+function ChangeSortingOrderMovie(node){
     $("#sortingTypeDIV").attr("data-select-btn", $(node).attr("data-value"));
     UpdateMovies();
 }
@@ -186,7 +186,6 @@ function filterSort(){
 }
 
 function filterGenere(){
-    console.log(CurrentTitlesDataToUse);
     let Selectedgenere = $("#genereSelect").val();
     let filteredData = [];
     if(Selectedgenere != null && Selectedgenere.length != 0){
@@ -202,9 +201,5 @@ function filterGenere(){
             }
         });
         CurrentTitlesDataToUse = filteredData;
-        console.log(CurrentTitlesDataToUse);
-    }
-    else{
-        console.log("Empty");
     }
 }

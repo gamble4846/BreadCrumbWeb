@@ -8,22 +8,55 @@
     <link rel="icon" type="image/png" href="images/icon.png" sizes="32x32">
     <!------------------STYLES------------------->
     <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/virtual-select.min.css" />
     <link rel="stylesheet" href="css/Common_CSS.css">
     <!------------------------------------------->
 </head>
 <body>
     <div id="header"></div>
-    <div class="container">
-        <h3>TvShows</h3>
-        <table class="table table-responsive table-stripped" id="tvshows_titles_table">
+    <div class="container-fluid">
+        <h3 class="text-white">Tv Shows</h3>
+        <div class="row">
+            <div class="col-md-3 col-sm-12 mt-2">
+                <div id="sortingTypeDIV" class="border-1-white" data-select-btn="addDesc">
+                    <button class="btn btn-sorting" data-value="azAsc" onclick="ChangeSortingOrderTvShow(this)">AZ <i class="fa fa-sort-amount-desc"></i></button>
+                    <button class="btn btn-sorting" data-value="azDesc" onclick="ChangeSortingOrderTvShow(this)">AZ <i class="fa fa-sort-amount-asc"></i></button>
+                    <button class="btn btn-sorting" data-value="ryAsc" onclick="ChangeSortingOrderTvShow(this)">Release Year <i class="fa fa-sort-amount-desc"></i></button>
+                    <button class="btn btn-sorting" data-value="ryDesc" onclick="ChangeSortingOrderTvShow(this)">Release Year <i class="fa fa-sort-amount-asc"></i></button>
+                    <button class="btn btn-sorting" data-value="addAsc" onclick="ChangeSortingOrderTvShow(this)">Added <i class="fa fa-sort-amount-desc"></i></button>
+                    <button class="btn btn-sorting" data-value="addDesc" onclick="ChangeSortingOrderTvShow(this)">Added <i class="fa fa-sort-amount-asc"></i></button>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-12 mt-2">
+                <div id="genreSelectDIV">
+                    <select id="genereSelect" placeholder="Select Genre">
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-12 mt-2">
+                <div id="moviesSearchDIV" class="h-100 mh-40p">
+                    <div class="input-group h-100">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text radius-0-imp h-100 bg-white border-right-0"><i class="fa fa-search"></i></span>
+                        </div>
+                        <input type="text" class="form-control radius-0-imp h-100 border-left-0" placeholder="Search..." id="tvshowSearch">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-12 mt-2">
+                <button onclick="UpdateTvShows()" type="button" class="btn btn-light-blue form-control h-100 radius-0-imp">Filter</button>
+            </div>
+        </div>
+        <div class="row" id="all_tvshows">
 
-        </table>
+        </div>
     </div>
     <div id="footer"></div>
     <!------------------JS----------------------->
     <script src="js/jquery-3.6.0.js"></script>
     <script src="js/bootstrap.bundle.js"></script>
     <script src="js/localbase.dev.js"></script>
+    <script src="js/virtual-select.min.js"></script>
     <script src="js/header_footer_loader.js"></script>
     <script src="js/tvshows_javascript.js"></script>
     <!------------------------------------------->
