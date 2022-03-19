@@ -58,6 +58,7 @@ function CreateVirtualSelect(elementID, options_){
 }
 
 function UpdateMovies(){
+    let invalidIMAGE = "https://lh3.googleusercontent.com/pw/AM-JKLXbzuPKjFkY0mN0b5CPLqTxo2AHbTbMYUKBJ1MIB9zmQz1mZgzstzH4kqWQ6Q20ub6vtqDYQzseLbYw3qqShsVRu0r1WNwDNw7YZfVqVOQAIK_8Ha7Qsu8EY202do-FQ9T71NhVuXBr1tfS4ivp_not=w586-h879-no?authuser=0";
     CurrentTitlesDataToUse = CurrentTitlesData;
     RemoveAllDivs("#all_movies");
     let rowHTML = "";
@@ -66,7 +67,7 @@ function UpdateMovies(){
     filterSearch();
 
     CurrentTitlesDataToUse.forEach(row => {
-        let cardHtml = GetCardHTML(row.Movies_MainName, row.Movies_Ver_Poster, row.Movie_IMDB_ID, row.Movies_ReleaseYear, row.Movies_Id, row.Server_ID);
+        let cardHtml = GetCardHTML(row.Movies_MainName, row.Movies_Ver_Poster, row.Movie_IMDB_ID, row.Movies_ReleaseYear, row.Movies_Id, row.Server_ID, invalidIMAGE);
         rowHTML += `<div class="col-md-2 mt-5 col-sm-4 col-6">${cardHtml}</div>`;
     });
     $("#all_movies").html(rowHTML);
