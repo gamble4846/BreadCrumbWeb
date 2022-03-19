@@ -57,8 +57,9 @@ function CreateVirtualSelect(elementID, options_){
     document.querySelector(elementID).setOptions(options);
 }
 
+
+
 function UpdateTvShows(){
-    let invalidIMAGE = "https://lh3.googleusercontent.com/pw/AM-JKLUXn_OjyC6tTFZW2bIu87jY2Jm32ilhnT4w72kXieDJ8nNKl2BQtAqHkpJ7egQ8WmXnAMGgy7RyXsHqY8d8vscXPIdsmMLUdWYTmvDHRT8JL9I6mfpid8MuS0CysHNzD6GvmQ6NDAe_46UXI7h1lLy9=w586-h879-no?authuser=0";
     CurrentTitlesDataToUse = CurrentTitlesData;
     RemoveAllDivs("#all_tvshows");
     let rowHTML = "";
@@ -67,7 +68,7 @@ function UpdateTvShows(){
     filterSearch();
 
     CurrentTitlesDataToUse.forEach(row => {
-        let cardHtml = GetCardHTML(row.Series_MainName, row.Series_Ver_Poster, row.Series_IMDB_ID_TAG_ID, row.Series_ReleaseYear, row.Series_Id, row.Server_ID, invalidIMAGE);
+        let cardHtml = GetCardHTML(row.Series_MainName, row.Series_Ver_Poster, row.Series_IMDB_ID_TAG_ID, row.Series_ReleaseYear, row.Series_Id, row.Server_ID, invalidIMAGETv);
         rowHTML += `<div class="col-md-2 mt-5 col-sm-4 col-6">${cardHtml}</div>`;
     });
     $("#all_tvshows").html(rowHTML);

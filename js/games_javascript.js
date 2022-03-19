@@ -58,7 +58,6 @@ function CreateVirtualSelect(elementID, options_){
 }
 
 function UpdateGames(){
-    let invalidIMAGE = "https://lh3.googleusercontent.com/pw/AM-JKLWJ_bopRlTkuggkqG7KXcJmuuFPrh_TX6eeCKwuSeHxAI8OdUzJobbIZ3Qss_Dkethn4_IOosY5XnMQJh__NlV2hiinbVS9ja54XZEmMiAdj1m2mS4EZGjn8h3-2RvgDPTMo_mVLAvdNzCxxj4ufnzL=w1561-h878-no?authuser=0";
     CurrentTitlesDataToUse = CurrentTitlesData;
     RemoveAllDivs("#all_games");
     let rowHTML = "";
@@ -67,7 +66,7 @@ function UpdateGames(){
     filterSearch();
 
     CurrentTitlesDataToUse.forEach(row => {
-        let cardHtml = GetCardHTML(row.Game_Name, row.Game_Poster, row.Game_ReleaseYear, "", row.Game_Id, row.Server_ID, invalidIMAGE);
+        let cardHtml = GetCardHTML(row.Game_Name, row.Game_Poster, row.Game_ReleaseYear, "", row.Game_Id, row.Server_ID, invalidIMAGEGame);
         rowHTML += `<div class="col-md-2 mt-5 col-sm-4 col-6">${cardHtml}</div>`;
     });
     $("#all_games").html(rowHTML);

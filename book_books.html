@@ -8,24 +8,50 @@
     <link rel="icon" type="image/png" href="images/icon.png" sizes="32x32">
     <!------------------STYLES------------------->
     <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/virtual-select.min.css" />
     <link rel="stylesheet" href="css/Common_CSS.css">
     <!------------------------------------------->
     
 </head>
 <body>
     <div id="header"></div>
-    <div class="container">
-        <h3>Books</h3>
-        <table class="table table-responsive table-stripped" id="books_titles_table">
+    <div class="container-fluid">
+        <h3 class="text-white">Books</h3>
+        <div class="row">
+            <div class="col-md-6 col-sm-12 mt-2">
+                <div id="sortingTypeDIV" class="border-1-white" data-select-btn="addDesc">
+                    <button class="btn btn-sorting" data-value="azAsc" onclick="ChangeSortingOrderBook(this)">AZ <i class="fa fa-sort-amount-desc"></i></button>
+                    <button class="btn btn-sorting" data-value="azDesc" onclick="ChangeSortingOrderBook(this)">AZ <i class="fa fa-sort-amount-asc"></i></button>
+                    <button class="btn btn-sorting" data-value="ryAsc" onclick="ChangeSortingOrderBook(this)">Release Year <i class="fa fa-sort-amount-desc"></i></button>
+                    <button class="btn btn-sorting" data-value="ryDesc" onclick="ChangeSortingOrderBook(this)">Release Year <i class="fa fa-sort-amount-asc"></i></button>
+                    <button class="btn btn-sorting" data-value="addAsc" onclick="ChangeSortingOrderBook(this)">Added <i class="fa fa-sort-amount-desc"></i></button>
+                    <button class="btn btn-sorting" data-value="addDesc" onclick="ChangeSortingOrderBook(this)">Added <i class="fa fa-sort-amount-asc"></i></button>
+                </div>
+            </div>
+            <div class="col-md-6 col-sm-12 mt-2">
+                <div id="moviesSearchDIV" class="h-100 mh-40p">
+                    <div class="input-group h-100">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text radius-0-imp h-100 bg-white border-right-0"><i class="fa fa-search"></i></span>
+                        </div>
+                        <input type="text" class="form-control radius-0-imp h-100 border-left-0" placeholder="Search..." id="bookSearch" onkeydown="UpdateBooks()" onchange="UpdateBooks()">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row" id="all_books">
 
-        </table>
+        </div>
     </div>
     <div id="footer"></div>
     <!------------------JS----------------------->
     <script src="js/jquery-3.6.0.js"></script>
     <script src="js/bootstrap.bundle.js"></script>
     <script src="js/localbase.dev.js"></script>
+    <script src="js/virtual-select.min.js"></script>
     <script src="js/header_footer_loader.js"></script>
+    <script src="js/globalVariables.js"></script>
+    <script src="js/common_functions.js"></script>
     <script src="js/books_javascript.js"></script>
     <!------------------------------------------->
 </body>
