@@ -19,12 +19,12 @@
         <div class="row">
             <div class="col-md-3 col-sm-12 mt-2">
                 <div id="sortingTypeDIV" class="border-1-white" data-select-btn="addDesc">
-                    <button class="btn btn-sorting" data-value="azAsc" onclick="ChangeSortingOrderComics(this)">AZ <i class="fa fa-sort-amount-desc"></i></button>
-                    <button class="btn btn-sorting" data-value="azDesc" onclick="ChangeSortingOrderComics(this)">AZ <i class="fa fa-sort-amount-asc"></i></button>
-                    <button class="btn btn-sorting" data-value="ryAsc" onclick="ChangeSortingOrderComics(this)">Release Year <i class="fa fa-sort-amount-desc"></i></button>
-                    <button class="btn btn-sorting" data-value="ryDesc" onclick="ChangeSortingOrderComics(this)">Release Year <i class="fa fa-sort-amount-asc"></i></button>
-                    <button class="btn btn-sorting" data-value="addAsc" onclick="ChangeSortingOrderComics(this)">Added <i class="fa fa-sort-amount-desc"></i></button>
-                    <button class="btn btn-sorting" data-value="addDesc" onclick="ChangeSortingOrderComics(this)">Added <i class="fa fa-sort-amount-asc"></i></button>
+                    <button class="btn btn-sorting" data-value="azAsc" onclick="ChangeSortingOrderManga(this)">AZ <i class="fa fa-sort-amount-desc"></i></button>
+                    <button class="btn btn-sorting" data-value="azDesc" onclick="ChangeSortingOrderManga(this)">AZ <i class="fa fa-sort-amount-asc"></i></button>
+                    <button class="btn btn-sorting" data-value="ryAsc" onclick="ChangeSortingOrderManga(this)">Release Year <i class="fa fa-sort-amount-desc"></i></button>
+                    <button class="btn btn-sorting" data-value="ryDesc" onclick="ChangeSortingOrderManga(this)">Release Year <i class="fa fa-sort-amount-asc"></i></button>
+                    <button class="btn btn-sorting" data-value="addAsc" onclick="ChangeSortingOrderManga(this)">Added <i class="fa fa-sort-amount-desc"></i></button>
+                    <button class="btn btn-sorting" data-value="addDesc" onclick="ChangeSortingOrderManga(this)">Added <i class="fa fa-sort-amount-asc"></i></button>
                 </div>
             </div>
             <div class="col-md-3 col-sm-12 mt-2">
@@ -39,15 +39,15 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text radius-0-imp h-100 bg-white border-right-0"><i class="fa fa-search"></i></span>
                         </div>
-                        <input type="text" class="form-control radius-0-imp h-100 border-left-0" placeholder="Search..." id="comicSearch">
+                        <input type="text" class="form-control radius-0-imp h-100 border-left-0" placeholder="Search..." id="mangaSearch">
                     </div>
                 </div>
             </div>
             <div class="col-md-3 col-sm-12 mt-2">
-                <button onclick="UpdateComics()" type="button" class="btn btn-light-blue form-control h-100 radius-0-imp">Filter</button>
+                <button onclick="UpdateManga()" type="button" class="btn btn-light-blue form-control h-100 radius-0-imp">Filter</button>
             </div>
         </div>
-        <div class="row" id="all_comics">
+        <div class="row" id="all_manga">
 
         </div>
     </div>
@@ -60,7 +60,7 @@
     <script src="js/header_footer_loader.js"></script>
     <script src="js/globalVariables.js"></script>
     <script src="js/common_functions.js"></script>
-    <script src="js/comics_javascript.js"></script>
+    <script src="js/manga_javascript.js"></script>
     <!------------------------------------------->
 </body>
 </html>
