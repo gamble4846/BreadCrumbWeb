@@ -3,4 +3,4 @@ var invalidIMAGEMovie = "https://lh3.googleusercontent.com/pw/AM-JKLVhC_46g0Nync
 var invalidIMAGEGame = "https://lh3.googleusercontent.com/pw/AM-JKLV-wBavlqedKmEWZzgMiexdPAyQhUJ3VUW3xHAUVxDsWjCEI6wGYYnsIyy-0WWEbdd9JuhQWwJygIxYlAPZSAHWcxUfOG8VMjCI6IYHsY96AwrC7ydzlxKA5lwVbI39Osq9hL1mWLTvkOJ7x5sCi0CR=w1561-h878-no?authuser=0";
 var invalidIMAGEBook = "https://lh3.googleusercontent.com/pw/AM-JKLXOt8X-X2B7O9qTFrfnkDb2Lzn6zm4WMk597SP8esbsrzdbzVqMYSnm1gU_ykKp8t4i0Lm9E1Prrwyb5m11fk3s0C4Qdoem6ICEZN42nr0N1KR9v8x_XhjlFEHszQNwkUVNemoekcIm1JX76zzYR4U5=s878-no?authuser=0";
 var invalidIMAGEComic = "https://lh3.googleusercontent.com/pw/AM-JKLUefNqguSvl4kVfUdAk3c2rYr9IQ7fGwGlhPmhbGCQ3hydk5Q5lGMiXRdd_SuzRzGw-SRQL3EV0AVS3HRJ6NoBA-p-2jrWz_DTDzWXvn4TTsV5d8Clj-rs5BSrmaViZnVKeKkKKNmSmGdEIECMZV7Tu=w586-h879-no?authuser=0";
-
+var invalidIMAGEManga = "https://lh3.googleusercontent.com/pw/AM-JKLV_LxSus0kkrlrNdzq6xbTdyYGeXP4wr6jSLnP94CS0MJBhXfS7P6DhosXA4lw_5xc3-GmLDX_doo9_L-lgzKFcgDOixwvVEueCQNwqEuY68BXipxxxnlU4S0W5vgm-jG6Pnl_HaC8JhqM2xPcFcdCL=w586-h879-no?authuser=0";

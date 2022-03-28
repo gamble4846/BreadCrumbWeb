@@ -66,7 +66,7 @@ function UpdateManga(){
     filterSearch();
 
     CurrentTitlesDataToUse.forEach(row => {
-        let cardHtml = GetCardHTML(row.Manga_Name, row.Manga_CoverPage, row.Manga_ReleaseDate.split("T")[0], row.MAL_ID, row.Manga_ID, row.Server_ID, invalidIMAGEComic);
+        let cardHtml = GetCardHTML(row.Manga_Name, row.Manga_CoverPage, row.Manga_ReleaseDate.split("T")[0], row.MAL_ID, row.Manga_ID, row.Server_ID, invalidIMAGEManga);
         rowHTML += `<div class="col-md-2 mt-5 col-sm-4 col-6">${cardHtml}</div>`;
     });
     $("#all_manga").html(rowHTML);
