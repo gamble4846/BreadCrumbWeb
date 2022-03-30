@@ -269,3 +269,36 @@ body{
     border-bottom: 1px solid var(--blue-leave-2);
     padding: 10px;
 }
+
+
+.header-table{
+    width: 50%;
+}
+
+/* Large desktop */
+@media (min-width: 1200px) { 
+    
+}
+
+/* Portrait tablet to landscape and desktop */
+@media (min-width: 768px) and (max-width: 1199px) { 
+    
+}
+
+/* Landscape phone to portrait tablet */
+@media (max-width: 767px) { 
+    .header-table{
+        width: 100%;
+    }
+}
+
+/* Landscape phones and down */
+@media (max-width: 480px) { 
+    .header-table{
+        width: 100%;
+    }
+}
+
+.breakText {
+    word-wrap: break-word;
+}
