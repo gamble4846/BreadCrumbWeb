@@ -8,6 +8,10 @@ $(document).ready(function() {
 function AddDataToCookie(){
     document.cookie = "script_link_cookie="+$("#script_link").val() + "; expires=Fri, 31 Dec 9999 23:59:59 GMT";
     document.cookie = "google_api_link_cookie="+$("#google_api_link").val() + "; expires=Fri, 31 Dec 9999 23:59:59 GMT";
+    notify.render({
+        head: `Database <i class="fas fa-bell"></i>`,
+        content: "Settings Saved to Cookies",
+    });
 }
 
 function GetAndSaveData(){

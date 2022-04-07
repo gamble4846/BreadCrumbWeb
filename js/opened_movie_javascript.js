@@ -43,80 +43,71 @@ $( document ).ready(function() {
 
 function Movie_Title_Manipulating(movie_title){
     movie_title_glob = movie_title;
-    //console.log(movie_title);
-    $("#movie_name").html(movie_title.Movies_MainName);
+    $("#OpenedMovieName").html(movie_title.Movies_MainName);
+    $("#backgroundImageURLDiv").css("background-image", `url("`+movie_title.Movies_Poster+`")`);
+    $("#OpenedMovieDesc").html(movie_title.Movies_ExtraInformation);
+    $("#OpenedMovieReleaseYear").html(movie_title.Movies_ReleaseYear);
+    $("#OpenedMovieGenre").html(movie_title.Movies_Genre);
+    $("#OpenedMovieOtherNames").html(movie_title.Movies_AltNames);
+    $("#OpenedMovieDirectors").html(movie_title.Movies_Directors);
+    $("#OpenedMovieWriters").html(movie_title.Movies_Writers);
+    $("#OpenedMovieStars").html(movie_title.Movies_Stars);
 };
 
-function Movie_Links_Manipulating(movie_links){
-    //console.log(movie_links);
-
-    innertablestr = "<tbody>";
-    for(let i=0; i<movie_links.length; i++){
-        innertablestr += "<tr class='pointer' onclick='LinkClicked("+ movie_links[i].Link_Id +")'>";
-        innertablestr += "<td>" + movie_links[i].Link_Language + "</td>";
-        innertablestr += "<td>" + movie_links[i].Link_Quality + "</td>";
-        innertablestr += "<td>" + movie_links[i].Streamable + "</td>";
-        innertablestr += "</tr>";
-    }
-    innertablestr += "</tbody>";
-
-    $("#links_table").html(innertablestr);
-};
-
-function LinkClicked(movie_link_id){
-    for(let i=0; i<current_links.length; i++){
-        if(current_links[i].Link_Id == movie_link_id){
-            current_link = current_links[i];
-        }
-    }
-    //console.log(current_link);
-    
-    innertablestr = "<tbody>";
-    innertablestr += "<tr><td>Link_Language: </td>";
-    innertablestr += "<td>" + current_link.Link_Language + "</td></tr>";
-    
-    innertablestr += "<tr><td>Link_Quality: </td>";
-    innertablestr += "<td>" + current_link.Link_Quality + "</td></tr>";
-
-    innertablestr += "<tr><td>Link_Size: </td>";
-    innertablestr += "<td>" + current_link.Link_Size + "</td></tr>";
-
-    innertablestr += "<tr><td>Link_Subtitles: </td>";
-    innertablestr += "<td>" + current_link.Link_Subtitles + "</td></tr>";
-
-    innertablestr += "<tr><td>Streamable: </td>";
-    innertablestr += "<td>" + current_link.Streamable + "</td></tr>";
-
-    innertablestr += "<tr><td>Password: </td>";
-    innertablestr += "<td>" + current_link.Link_Password + "</td></tr>";
-    innertablestr += "</tbody>";
-
-
-    //console.log(innertablestr);
-
-    $('#opened_links_table').html(innertablestr);
-    $('#episode_id_op_link').html(movie_title_glob.Movies_MainName);
-    CreateButtons();
-    $('#Opened_Link_modal').modal('toggle');
-};
-
-function CreateButtons(){
-    //console.log(current_link);
-
-    var innerbuttons = `
-        <button type="button" class="btn btn-primary w-100 mt-1" onclick="link_manipulation('` + current_link.Link_link + `')">Open Link</button><br>
-        <button type="button" class="btn btn-primary w-100 mt-1" onclick="link_manipulation('` + current_link.Link_link + `')">Copy Link</button><br>
-        <button type="button" class="btn btn-primary w-100 mt-1" onclick="link_manipulation('` + current_link.Link_link + `')">Open Link Incognito</button><br>
-        <button type="button" class="btn btn-primary w-100 mt-1" onclick="link_manipulation('` + current_link.Link_link + `')">Copy Link Incognito</button><br>
-        <button type="button" class="btn btn-primary w-100 mt-1" onclick="link_manipulation('` + current_link.Link_link + `')">Open API Link</button><br>
-        <button type="button" class="btn btn-primary w-100 mt-1" onclick="link_manipulation('` + current_link.Link_link + `')">Copy API Link</button><br>
-        <button type="button" class="btn btn-primary w-100 mt-1" onclick="link_manipulation('` + current_link.Link_link + `')">Open API Link Incognito</button><br>
-        <button type="button" class="btn btn-primary w-100 mt-1" onclick="link_manipulation('` + current_link.Link_link + `')">Copy API Link Incognito</button><br>
-    `; 
-
-    $("#div_links_buttons").html(innerbuttons);
+function Movie_Links_Manipulating(current_links){
+    linksTableData = "";
+    current_links.forEach(function (link, i) {
+        linksTableData += GetRow((i+1), link);
+    });
+    $("#openedMovieLinks").html(linksTableData);
 }
 
-function link_manipulation(link){
-    window.open(link, '_blank').focus();
+function GetRow(number, link){
+    let data = `
+        <div class="row pointer" data-bs-toggle="collapse" data-bs-target="#LinkCol`+link.Link_Id+`"">
+            <div class="col-2 ellipsis-g links-col-body">`+number+`</div>
+            <div class="col-2 ellipsis-g links-col-body">`+link.Link_Quality+`</div>
+            <div class="col-2 ellipsis-g links-col-body">`+link.Link_Language+`</div>
+            <div class="col-5 ellipsis-g links-col-body d-none d-sm-block">`+link.Link_Subtitles+`</div>
+            <div class="col-1 ellipsis-g links-col-body">`+link.Streamable+`</div>
+        </div>
+
+        <div class="row openedLinkRow collapse" id="LinkCol`+link.Link_Id+`">
+            <div class="col-12">
+                <div class="row openedLinkRow">
+                    <div class="col-md-3 col-sm-12">Link_Quality</div>
+                    <div class="col-md-9 col-sm-12">`+link.Link_Quality+`</div>
+                </div>
+                <div class="row openedLinkRow">
+                    <div class="col-md-3 col-sm-12">Link_Language</div>
+                    <div class="col-md-9 col-sm-12">`+link.Link_Language+`</div>
+                </div>
+                <div class="row openedLinkRow">
+                    <div class="col-md-3 col-sm-12">Link_Subtitles</div>
+                    <div class="col-md-9 col-sm-12">`+link.Link_Subtitles+`</div>
+                </div>
+                <div class="row openedLinkRow">
+                    <div class="col-md-3 col-sm-12">Link_Email</div>
+                    <div class="col-md-9 col-sm-12">`+link.Link_Email+`</div>
+                </div>
+                <div class="row openedLinkRow">
+                    <div class="col-md-3 col-sm-12">Link_Size</div>
+                    <div class="col-md-9 col-sm-12">`+link.Link_Size+`</div>
+                </div>
+                <div class="row openedLinkRow">
+                    <div class="col-md-3 col-sm-12">Link_Password</div>
+                    <div class="col-md-9 col-sm-12">`+link.Link_Password+`</div>
+                </div>
+                <div class="row openedLinkRow">
+                    <div class="col-md-3 col-sm-12">Link_Desc</div>
+                    <div class="col-md-9 col-sm-12">`+link.Link_Desc+`</div>
+                </div>
+                <div class="row openedLinkRow">
+                    <div class="col-md-3 col-sm-12">Streamable</div>
+                    <div class="col-md-9 col-sm-12">`+link.Streamable+`</div>
+                </div>
+            </div>
+        </div>
+    `
+    return data;
 }

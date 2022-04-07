@@ -14,89 +14,90 @@
 </head>
 <body>
     <div id="header"></div>
-    <div class="head">
-        <div class="header-image-cover">
-            <img class="header-image" src="images/New Project.png" />
-        </div>
-        <div class="header-title">
-            <table class="header-table">
-                <tr>
-                    <td colspan="2">
-                        <h1>Crayon Shin-chan: My Moving Story! Cactus Large Attack!</h1>
-                    </td>
-                </tr>
-                <tr>
-                    <td colspan="2">
-                        When an Interpol-issued Red Notice the highest level warrant to hunt and capture the world's most wanted goes out, the FBI's top profiler John Hartley (Dwayne Johnson) is on the case. His global pursuit finds him smack dab in the middle of a daring heist w
-                        <br>
-                        <br>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Release Year</td>
-                    <td>2006</td>
-                </tr>
-                <tr>
-                    <td>Genere</td>
-                    <td>Drama, Mystery, Sci-Fi, Thriller</td>
-                </tr>
-                <tr>
-                    <td>Other Names</td>
-                    <td>4: Rise of the Silver Surfer</td>
-                </tr>
-                <tr>
-                    <td>Directors</td>
-                    <td>Christopher Nolan</td>
-                </tr>
-                <tr>
-                    <td>Writers</td>
-                    <td>Jonathan Nolan, Christopher Nolan</td>
-                </tr>
-                <tr>
-                    <td>Stars</td>
-                    <td>Christian Bale, Hugh Jackman, Scarlett Johansson</td>
-                </tr>
-            </table>
+    <div class="head" id="backgroundImageURLDiv">
+        <div class="header-grid-container">
+            <div class="header-grid">
+                <div class="row">
+                    <div class="col-md-6 col-sm-12">
+                        <h1 id="OpenedMovieName"></h1>
+                    </div>
+                </div>
+                <div class="row mb-5">
+                    <div class="col-md-6 col-sm-12">
+                        <p id="OpenedMovieDesc"></p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 col-sm-12">
+                        <div class="row">
+                            <div class="col-6">
+                                Release Year
+                            </div>
+                            <div class="col-6">
+                                <p id="OpenedMovieReleaseYear"></p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-6">
+                                Genere
+                            </div>
+                            <div class="col-6">
+                                <p id="OpenedMovieGenre"></p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-6">
+                                Other Names
+                            </div>
+                            <div class="col-6">
+                                <p id="OpenedMovieOtherNames"></p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-6">
+                                Directors
+                            </div>
+                            <div class="col-6">
+                                <p id="OpenedMovieDirectors"></p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-6">
+                                Writers
+                            </div>
+                            <div class="col-6">
+                                <p id="OpenedMovieWriters"></p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-6">
+                                Stars
+                            </div>
+                            <div class="col-6">
+                                <p id="OpenedMovieStars"></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
     <div class="links_div text-white m-3">
         <h3>Links</h3>
-        <table class="w-100 links_table">
-            <thead>
-                <tr>
-                    <th width="5%">#</th>
-                    <th width="10%">Quality</th>
-                    <th width="15%">Language</th>
-                    <th width="60%">Subtitles</th>
-                    <th width="10%">Streamable</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>1</td>
-                    <td>1080p</td>
-                    <td>English, Hindi</td>
-                    <td>
-                        <div class="breakText">
-                            English (SDH), Dansk, Deutsch(SDH), Deutsch, English (United Kingdom) (SDH), Espanol (Latinoamerica) (SDH), Espanol (Latinoamerica), Espanol, Suomi, Francais (SDH), Francais, Italiano, Norsk Bokmal, Nederlands, Portugues (Brasil) (SDH), Protugues (Brasil), Portugues, Svenska
-                        </div>
-                    </td>
-                    <td>Yes</td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td>1080p</td>
-                    <td>English</td>
-                    <td>
-                        <div class="breakText">
-                            English
-                        </div>
-                    </td>
-                    <td>Yes</td>
-                </tr>
-            </tbody>
-        </table>
+        <div class="links_container">
+            <div class="row bold-g">
+                <div class="col-md-2 ellipsis-g links-col-head">#</div>
+                <div class="col-md-2 ellipsis-g links-col-head">Quality</div>
+                <div class="col-md-2 ellipsis-g links-col-head">Language</div>
+                <div class="col-md-5 ellipsis-g links-col-head d-none d-sm-block">Subtitle</div>
+                <div class="col-md-1 ellipsis-g links-col-head">Streamable</div>
+            </div>
+            <span id="openedMovieLinks">
+                
+            </span>
+        </div>
     </div>
+
     <div id="footer"></div>
     <!------------------JS----------------------->
     <script src="js/jquery-3.6.0.js"></script>
