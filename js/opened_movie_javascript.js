@@ -65,11 +65,11 @@ function Movie_Links_Manipulating(current_links){
 function GetRow(number, link){
     let data = `
         <div class="row pointer" data-bs-toggle="collapse" data-bs-target="#LinkCol`+link.Link_Id+`"">
-            <div class="col-2 ellipsis-g links-col-body">`+number+`</div>
-            <div class="col-2 ellipsis-g links-col-body">`+link.Link_Quality+`</div>
-            <div class="col-2 ellipsis-g links-col-body">`+link.Link_Language+`</div>
-            <div class="col-5 ellipsis-g links-col-body d-none d-sm-block">`+link.Link_Subtitles+`</div>
-            <div class="col-1 ellipsis-g links-col-body">`+link.Streamable+`</div>
+            <div class="col-md-2 col-sm-2 col-2 ellipsis-g links-col-body">`+number+`</div>
+            <div class="col-md-2 col-sm-3 col-3 ellipsis-g links-col-body">`+link.Link_Quality+`</div>
+            <div class="col-md-2 col-sm-4 col-4 ellipsis-g links-col-body">`+link.Link_Language+`</div>
+            <div class="col-md-5 col-sm-3 col-3 ellipsis-g links-col-body d-none d-sm-none d-md-block">`+link.Link_Subtitles+`</div>
+            <div class="col-md-1 col-sm-3 col-3 ellipsis-g links-col-body">`+link.Streamable+`</div>
         </div>
 
         <div class="row openedLinkRow collapse" id="LinkCol`+link.Link_Id+`">
