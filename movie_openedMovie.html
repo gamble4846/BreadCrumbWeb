@@ -15,7 +15,7 @@
 <body>
     <div id="header"></div>
     <div class="head" id="backgroundImageURLDiv">
-        <div class="header-grid-container">
+        <div class="container-fluid">
             <div class="header-grid">
                 <div class="row">
                     <div class="col-md-6 col-sm-12">
@@ -98,19 +98,14 @@
         </div>
     </div>
 
-    <div class="videoPlayer w-100 p-3 bg-white" id="videoPlayer">
-        <div class="videoPlayerHeader">
-            <div class="row pb-4">
-                <div class="col-11 p-0">
-                    
+    <div class="modal fade" id="videoModal" tabindex="-1">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                 </div>
-                <div class="col-1 text-end p-0">
-                    <i class="fa fa-times font-30 pointer" onclick="hideDiv('#videoPlayer')" aria-hidden="true"></i>
-                </div>
+                <div class="modal-body" id="videoPlayerBody"></div>
             </div>
-        </div>
-        <div class="videoPlayerBody" id="videoPlayerBody">
-
         </div>
     </div>
     <div id="footer"></div>

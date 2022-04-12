@@ -222,22 +222,15 @@ body{
 .header-table{
     width: 50%;
     padding: 30px 10px 10px 10px;
-    z-index: 2;
+    z-index: 3;
     position: relative;
     color: white;
 }
 
 .header-grid{
     padding: 30px 10px 10px 10px;
-    z-index: 2;
-    position: absolute;
     color: white;
-    bottom: 0;
-    overflow-x: hidden;
-}
-
-.header-grid-container{
-    padding: 15px;
+    position: relative;
 }
 
 .breakText {
@@ -313,3 +306,21 @@ body{
     border: 1px solid var(--blue-leave-2);
 }
 
+.folderFilesHeader{
+    color: white;
+    font-family: ReginaCustom;
+    font-size: 50px;
+}
+
+@font-face {
+    font-family: ReginaCustom;
+    src: url(../fonts/ReginaScript-d9xAX.ttf);
+}
+
+.folderFilesContainer{
+    width: 100%;
+}
+
+.vh-65{
+    height: 75vh;
+}

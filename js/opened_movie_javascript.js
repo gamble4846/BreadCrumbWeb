@@ -1,5 +1,4 @@
 $( document ).ready(function() {
-    $("#videoPlayer").hide();
     let db = new Localbase('BreadCrumb_Local_DB');
     db.collection('all_Data').get().then(all_Data_x => {
         all_Data = all_Data_x[0];
@@ -149,7 +148,7 @@ function LinkButtonClicked(link, copy, api, play){
         FinalLink = link;
 
     if(play){
-        $("#videoPlayer").show();
+        $("#videoModal").modal('show');
         $("#videoPlayerBody").html(generateEm(FinalLink, api));
     }
     else if(copy){
@@ -165,19 +164,15 @@ function generateEm(link, api){
     let data = ``;
     if(api){
         data=`
-            <video class="w-100" controls>
+            <video class="w-100 vh-65" controls>
                 <source src="`+link+`" type="video/mp4">
                 Your browser does not support HTML video.
             </video>
         `
     }
     else{
-        data = `<iframe src="https://drive.google.com/file/d/`+videoID+`/preview" class="w-100" allow="autoplay"></iframe>`;
+        data = `<iframe src="https://drive.google.com/file/d/`+videoID+`/preview" class="w-100 vh-65" allow="autoplay"></iframe>`;
     }
 
     return data;
-}
-
-function hideDiv(id){
-    $(id).hide();
 }
