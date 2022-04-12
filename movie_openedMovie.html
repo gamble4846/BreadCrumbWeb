@@ -30,50 +30,50 @@
                 <div class="row">
                     <div class="col-md-6 col-sm-12">
                         <div class="row">
-                            <div class="col-6">
+                            <div class="col-3">
                                 Release Year
                             </div>
-                            <div class="col-6">
+                            <div class="col-9">
                                 <p id="OpenedMovieReleaseYear"></p>
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-6">
+                            <div class="col-3">
                                 Genere
                             </div>
-                            <div class="col-6">
+                            <div class="col-9">
                                 <p id="OpenedMovieGenre"></p>
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-6">
+                            <div class="col-3">
                                 Other Names
                             </div>
-                            <div class="col-6">
+                            <div class="col-9">
                                 <p id="OpenedMovieOtherNames"></p>
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-6">
+                            <div class="col-3">
                                 Directors
                             </div>
-                            <div class="col-6">
+                            <div class="col-9">
                                 <p id="OpenedMovieDirectors"></p>
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-6">
+                            <div class="col-3">
                                 Writers
                             </div>
-                            <div class="col-6">
+                            <div class="col-9">
                                 <p id="OpenedMovieWriters"></p>
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-6">
+                            <div class="col-3">
                                 Stars
                             </div>
-                            <div class="col-6">
+                            <div class="col-9">
                                 <p id="OpenedMovieStars"></p>
                             </div>
                         </div>
@@ -85,7 +85,7 @@
     <div class="links_div text-white m-3">
         <h3>Links</h3>
         <div class="links_container">
-            <div class="row bold-g">
+            <div class="row bold-g bg-lv5">
                 <div class="col-md-2 col-sm-2 col-2 ellipsis-g links-col-head">#</div>
                 <div class="col-md-2 col-sm-3 col-3 ellipsis-g links-col-head">Quality</div>
                 <div class="col-md-2 col-sm-4 col-4 ellipsis-g links-col-head">Language</div>
@@ -98,12 +98,28 @@
         </div>
     </div>
 
+    <div class="videoPlayer w-100 p-3 bg-white" id="videoPlayer">
+        <div class="videoPlayerHeader">
+            <div class="row pb-4">
+                <div class="col-11 p-0">
+                    
+                </div>
+                <div class="col-1 text-end p-0">
+                    <i class="fa fa-times font-30 pointer" onclick="hideDiv('#videoPlayer')" aria-hidden="true"></i>
+                </div>
+            </div>
+        </div>
+        <div class="videoPlayerBody" id="videoPlayerBody">
+
+        </div>
+    </div>
     <div id="footer"></div>
     <!------------------JS----------------------->
     <script src="js/jquery-3.6.0.js"></script>
     <script src="js/bootstrap.bundle.js"></script>
     <script src="js/localbase.dev.js"></script>
     <script src="js/header_footer_loader.js"></script>
+    <script src="js/common_functions.js"></script>
     <script src="js/opened_movie_javascript.js"></script>
     <!------------------------------------------->
 </body>

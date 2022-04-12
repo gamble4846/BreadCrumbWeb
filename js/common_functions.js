@@ -26,3 +26,17 @@ function filterSearch(searchBoxID, CurrentTitlesDataToUse){
 
     return filteredList;
 }
+
+function getCookie(name) {
+    const value = `; ${document.cookie}`;
+    const parts = value.split(`; ${name}=`);
+    if (parts.length === 2) return parts.pop().split(';').shift();
+};
+
+function copyToClipBoard(STR){
+    var $temp = $("<input>");
+    $("body").append($temp);
+    $temp.val($(element).text()).select();
+    document.execCommand("copy");
+    $temp.remove();
+}

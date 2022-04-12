@@ -8,6 +8,10 @@
     --blue-leave-7: #87AAD0;
 }
 
+.bg-lv5{
+    background-color: var(--blue-leave-5);
+}
+
 ::-webkit-scrollbar {
     -webkit-appearance: none;
     width: 7px;
@@ -279,6 +283,25 @@ body{
 
 .openedLinkRow{
     border: 1px solid var(--blue-leave-2);
-    padding: 10px;
+}
+
+.linkRow:hover{
+    background-color: var(--blue-leave-4);
+}
+
+.custom-btn-lv{
+    background-color: var(--blue-leave-5);
+    color: white;
+    border: 1px solid var(--blue-leave-2);
+    margin: 5px;
+}
+
+.custom-btn-lv:hover{
+    background-color: var(--blue-leave-4);
+    color: white;
+}
+
+.font-30{
+    font-size: 30px;
 }
 
