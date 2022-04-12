@@ -230,8 +230,10 @@ body{
 .header-grid{
     padding: 30px 10px 10px 10px;
     z-index: 2;
-    position: relative;
+    position: absolute;
     color: white;
+    bottom: 0;
+    overflow-x: hidden;
 }
 
 .header-grid-container{
