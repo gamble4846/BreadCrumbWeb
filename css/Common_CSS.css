@@ -324,3 +324,24 @@ body{
 .vh-65{
     height: 75vh;
 }
+
+.ffCol-head{
+    border: 1px solid var(--blue-leave-2);
+    padding: 10px;
+}
+
+.ffCol-body{
+    border: 1px solid var(--blue-leave-2);
+    padding: 10px;
+}
+
+.ffRow-body{
+    text-decoration: none;
+    color: white;
+}
+
+.ffRow-body:hover{
+    background-color: var(--blue-leave-4);
+    text-decoration: none;
+    color: white;
+}

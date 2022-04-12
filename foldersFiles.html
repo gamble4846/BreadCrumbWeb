@@ -14,20 +14,33 @@
 </head>
 <body>
     <div id="header"></div>
-    <div class="container-fluid">
+    <div class="container text-white">
         <h3 class="p-4 folderFilesHeader">Folders and Files</h3>
         <div class="folderFilesContainer">
-            <div class="row">
-                <div class="col-2">#</div>
-                <div class="col-2">Name</div>
-                <div class="col-2">Size</div>
+            <div class="row ffRow-head bg-lv5">
+                <div class="col-1 ffCol-head ellipsis-g"><i class="fa fa-hdd-o" aria-hidden="true"></i></div>
+                <div class="col-11 ffCol-head ellipsis-g">Name</div>
+            </div>
+            <span id="FFDisplayBody"></span>
+        </div>
+    </div>
+
+    <div class="modal fade" id="fileModal" tabindex="-1">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body" id="fileModalBody"></div>
             </div>
         </div>
     </div>
+
     <div id="footer"></div>
     <!------------------JS----------------------->
     <script src="js/jquery-3.6.0.js"></script>
     <script src="js/bootstrap.bundle.js"></script>
+    <script src="js/font_awesome.js"></script>
     <script src="js/localbase.dev.js"></script>
     <script src="js/header_footer_loader.js"></script>
     <script src="js/common_functions.js"></script>
