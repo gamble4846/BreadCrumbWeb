@@ -1,12 +1,9 @@
 var all_Data;
-var tvshow_id_url;
 var tvshow_server_id_url;
-var current_episodes;
-var current_links;
-var tvshow_title_glob;
-var current_episode;
+var tvshow_id_url;
 
 $( document ).ready(function() {
+    $("#videoPlayer").hide();
     let db = new Localbase('BreadCrumb_Local_DB');
     db.collection('all_Data').get().then(all_Data_x => {
         all_Data = all_Data_x[0];
@@ -44,155 +41,220 @@ $( document ).ready(function() {
     });
 });
 
-function Get_Current_Episdoes(Season_ID){
-    Season_ID = Season_ID.toString();
-    episodes_data = all_Data.TvShows.Episodes;
-    //console.log(episodes_data);
 
-    current_episodes = [];
-    for(let i=0; i<episodes_data.length; i++){
-        if(episodes_data[i].Server_ID == tvshow_server_id_url){
-            for(let j=0; j<episodes_data[i].DATA.length; j++){
-                if(episodes_data[i].DATA[j].Season_Id == Season_ID){
-                    current_episodes.push(episodes_data[i].DATA[j]);
+function Tvshow_Title_Manipulating(seriesTitle){
+    $("#backgroundImageURLDiv").css("background-image", `url("`+seriesTitle.Series_Poster+`")`);
+    $("#OpenedSeriesName").html(seriesTitle.Series_MainName);
+    $("#OpenedSeriesDesc").html(seriesTitle.Series_ExtraInformation);
+    $("#OpenedSeriesReleaseYear").html(seriesTitle.Series_ReleaseYear);
+    $("#OpenedSeriesGenre").html(seriesTitle.Series_Genre);
+    $("#OpenedSeriesOtherNames").html(seriesTitle.Series_AltNames);
+}
+
+function Tvshow_Seasons_Manipulating(seriesSeasons){
+    NewSeasonSelected(seriesSeasons[0].Season_Id, seriesSeasons[0].Season_Name);
+    options = ``;
+    seriesSeasons.forEach(season => {
+        options += getSeasonLI(season.Season_Name, season.Season_Id);
+    });
+    $("#seasonsOptions").html(options);
+}
+
+function getSeasonLI(seasonName, seasonId){
+    return `<li><a class="dropdown-item pointer" onclick="NewSeasonSelected(`+seasonId+`, '`+seasonName+`')">`+ seasonName +`</a></li>`
+}
+
+function NewSeasonSelected(id,name){
+    $("#SelectedSeason").html(name);
+    let current_episodes = [];
+    episodesData = all_Data.TvShows.Episodes;
+    episodesData.forEach(server => {
+        if(server.Server_ID == tvshow_server_id_url){
+            server.DATA.forEach(episode => {
+                if(episode.Season_Id == id){
+                    current_episodes.push(episode);
                 }
-            }
-            break;
+            });
         }
-    }
-    Tvshow_Episodes_Manipulating(current_episodes);
+    });
+
+    epsiodesList = ``;
+    current_episodes.forEach(episode => {
+        epsiodesList += getEpisodesRow(episode);
+    });
+
+    $('#epsiodesGrid').html(epsiodesList);
 }
 
-function Get_Current_Links(Episode_ID){
-    Episode_ID = Episode_ID.toString();
-    links_data = all_Data.TvShows.Links;
-    //console.log(links_data);
+function getEpisodesRow(episode){
+    return `
+    
+    <div class="row pointer linkRow" data-bs-toggle="collapse" data-bs-target="#EpisodeCol`+episode.Episode_Id+`">
+        <div class="col-2 col-md-1 ellipsis-g links-col-body">`+episode.Episode_Number+`</div>
+        <div class="col-10 col-md-8 ellipsis-g links-col-body">`+episode.Episode_Name+`</div>
+        <div class="col-md-3 d-none d-md-block ellipsis-g links-col-body">`+episode.Episode_ReleaseDate+`</div>
+    </div>
 
-    current_links = [];
-    for(let i=0; i<links_data.length; i++){
-        if(links_data[i].Server_ID == tvshow_server_id_url){
-            for(let j=0; j<links_data[i].DATA.length; j++){
-                if(links_data[i].DATA[j].Episode_Id == Episode_ID){
-                    current_links.push(links_data[i].DATA[j]);
+    <div class="collapse openedEpisode row" id="EpisodeCol`+episode.Episode_Id+`">
+        <div class="links_container p-3">
+            <div class="row bold-g bg-lv5">
+                <div class="col-md-2 col-sm-2 col-2 ellipsis-g links-col-head">#</div>
+                <div class="col-md-2 col-sm-3 col-3 ellipsis-g links-col-head">Quality</div>
+                <div class="col-md-2 col-sm-4 col-4 ellipsis-g links-col-head">Language</div>
+                <div class="col-md-5 col-sm-3 col-3 ellipsis-g links-col-head d-none d-sm-none d-md-block">Subtitle</div>
+                <div class="col-md-1 col-sm-3 col-3 ellipsis-g links-col-head">Streamable</div>
+            </div>
+            <span>
+                `+getEpisodeLinks(episode.Episode_Id)+`
+            </span>
+        </div>
+    </div>
+    `;
+}
+
+function getEpisodeLinks(id){
+    linkData = all_Data.TvShows.Links;
+    currentLinks = [];
+    linkData.forEach(server => {
+        if(server.Server_ID == tvshow_server_id_url){
+            server.DATA.forEach(link => {
+                if(link.Episode_Id == id){
+                    currentLinks.push(link);
                 }
-            }
-            break;
+            });
         }
-    }
-    Tvshow_Links_Manipulating(current_links,Episode_ID);
+    });
+
+    linksList = ''
+    currentLinks.forEach((link, i) => {
+        linksList += getLinksRow((i+1),link);
+    });
+
+    return linksList;
 }
 
-function Tvshow_Title_Manipulating(tvshow_title){
-    tvshow_title_glob = tvshow_title;
-    console.log(tvshow_title);
-    $("#tvshow_name").html(tvshow_title.Series_MainName);
+function getLinksRow(number, link){
+    let data = `
+        <div class="row pointer linkRow" data-bs-toggle="collapse" data-bs-target="#LinkCol`+link.Link_Id+`">
+            <div class="col-md-2 col-sm-2 col-2 ellipsis-g links-col-body">`+number+`</div>
+            <div class="col-md-2 col-sm-3 col-3 ellipsis-g links-col-body">`+link.Link_Quality+`</div>
+            <div class="col-md-2 col-sm-4 col-4 ellipsis-g links-col-body">`+link.Link_Language+`</div>
+            <div class="col-md-5 col-sm-3 col-3 ellipsis-g links-col-body d-none d-sm-none d-md-block">`+link.Link_Subtitles+`</div>
+            <div class="col-md-1 col-sm-3 col-3 ellipsis-g links-col-body">`+link.Streamable+`</div>
+        </div>
+
+        <div class="row openedLinkRow collapse" id="LinkCol`+link.Link_Id+`">
+            <div class="col-12 p-0">
+                <div class="row m-2">
+                    <div class="col-12">
+                        <div class="row openedLinkRow">
+                            <div class="col-md-3 col-sm-12 p-2">Quality</div>
+                            <div class="col-md-9 col-sm-12 p-2">`+link.Link_Quality+`</div>
+                        </div>
+                        <div class="row openedLinkRow">
+                            <div class="col-md-3 col-sm-12 p-2">Language</div>
+                            <div class="col-md-9 col-sm-12 p-2">`+link.Link_Language+`</div>
+                        </div>
+                        <div class="row openedLinkRow">
+                            <div class="col-md-3 col-sm-12 p-2">Subtitles</div>
+                            <div class="col-md-9 col-sm-12 p-2">`+link.Link_Subtitles+`</div>
+                        </div>
+                        <div class="row openedLinkRow">
+                            <div class="col-md-3 col-sm-12 p-2">Email</div>
+                            <div class="col-md-9 col-sm-12 p-2">`+link.Link_Email+`</div>
+                        </div>
+                        <div class="row openedLinkRow">
+                            <div class="col-md-3 col-sm-12 p-2">Size</div>
+                            <div class="col-md-9 col-sm-12 p-2">`+link.Link_Size+`</div>
+                        </div>
+                        <div class="row openedLinkRow">
+                            <div class="col-md-3 col-sm-12 p-2">Password</div>
+                            <div class="col-md-9 col-sm-12 p-2">`+link.Link_Password+`</div>
+                        </div>
+                        <div class="row openedLinkRow">
+                            <div class="col-md-3 col-sm-12 p-2">Desc</div>
+                            <div class="col-md-9 col-sm-12 p-2">`+link.Link_Desc+`</div>
+                        </div>
+                        <div class="row openedLinkRow">
+                            <div class="col-md-3 col-sm-12 p-2">Streamable</div>
+                            <div class="col-md-9 col-sm-12 p-2">`+link.Streamable+`</div>
+                        </div>
+                        <div class="row openedLinkRow">
+                            <div class="col-md-3 col-sm-12 p-2">Links</div>
+                            <div class="col-md-9 col-sm-12 p-2">
+                                `+CreateLinkButtons(link)+`
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    `
+
+    return data;
 }
 
-function Tvshow_Seasons_Manipulating(tvshow_seasons){
-    //console.log(tvshow_seasons);
-    options_string = "";
-    for(let i=0; i<tvshow_seasons.length; i++){
-        $('#seasons_select').append(`<option value="${tvshow_seasons[i].Season_Id}">${tvshow_seasons[i].Season_Name}</option>`);
-    }
-    Get_Current_Episdoes(tvshow_seasons[0].Season_Id);
-}
-
-function Tvshow_Episodes_Manipulating(tvshow_episodes){
-    //console.log(tvshow_episodes);
-    innertablestr = "<tbody>";
-    for(let i=0; i<tvshow_episodes.length; i++){
-        innertablestr += "<tr class='pointer' onclick='Get_Current_Links(" + tvshow_episodes[i].Episode_Id + ")'";
-        innertablestr += "><td>";
-        innertablestr += tvshow_episodes[i].Episode_Number + "</td><td>";
-        innertablestr += tvshow_episodes[i].Episode_Name + "</td><td>";
-        innertablestr += tvshow_episodes[i].Episode_ReleaseDate + "</td>";
-        innertablestr += "</tr>";
-    }
-    innertablestr += "</tbody>";
-    $("#episodes_table").html(innertablestr);
-}
-
-function Tvshow_Links_Manipulating(tvshow_links,Episode_ID){
-    for(let i=0; i<current_episodes.length; i++){
-        if(current_episodes[i].Episode_Id == Episode_ID){
-            current_episode = current_episodes[i];
-        }
-    }
-
-    innertablestr = "<tbody>";
-    for(let i=0; i<tvshow_links.length; i++){
-        innertablestr += "<tr class='pointer' onclick='LinkClicked("+ tvshow_links[i].Link_Id +")'>";
-        innertablestr += "<td>" + tvshow_links[i].Link_Language + "</td>";
-        innertablestr += "<td>" + tvshow_links[i].Link_Quality + "</td>";
-        innertablestr += "<td>" + tvshow_links[i].Streamable + "</td>";
-        innertablestr += "</tr>";
-    }
-    innertablestr += "</tbody>";
+function CreateLinkButtons(link_){
+    let googleAPI = getCookie("google_api_link_cookie");
     
-    //console.log(tvshow_links);
-    $("#episode_name").html(current_episode.Episode_Name);
-    $("#links_table").html(innertablestr);
-    $('#Links_modal').modal('toggle');
-}
-
-function LinkClicked(tvshow_link_id){
-    for(let i=0; i<current_links.length; i++){
-        if(current_links[i].Link_Id == tvshow_link_id){
-            current_link = current_links[i];
+    let data = ``;
+    data += `<button class="custom-btn-lv btn" onclick="LinkButtonClicked('`+link_.Link_link+`', false, false, false)">Open Link</button>`;
+    data += `<button class="custom-btn-lv btn" onclick="LinkButtonClicked('`+link_.Link_link+`', true, false, false)">Copy Link</button>`;
+    
+    if(link_.Streamable.toUpperCase() == 'YES'){
+        data += `<button class="custom-btn-lv btn" onclick="LinkButtonClicked('`+link_.Link_link+`', false, false, true)">Play Link</button>`;
+        if(googleAPI){
+            data += `<button class="custom-btn-lv btn" onclick="LinkButtonClicked('`+link_.Link_link+`', false, true, false)">Open API Link</button>`;
+            data += `<button class="custom-btn-lv btn" onclick="LinkButtonClicked('`+link_.Link_link+`', true, true, false)">Copy API Link</button>`;
+            data += `<button class="custom-btn-lv btn" onclick="LinkButtonClicked('`+link_.Link_link+`', false, true, true)">Play API Link</button>`;        
         }
-    }
-    //console.log(current_link);
-    
-    innertablestr = "<tbody>";
-    innertablestr += "<tr><td>Link_Language: </td>";
-    innertablestr += "<td>" + current_link.Link_Language + "</td></tr>";
-    
-    innertablestr += "<tr><td>Link_Quality: </td>";
-    innertablestr += "<td>" + current_link.Link_Quality + "</td></tr>";
-
-    innertablestr += "<tr><td>Link_Size: </td>";
-    innertablestr += "<td>" + current_link.Link_Size + "</td></tr>";
-
-    innertablestr += "<tr><td>Link_Subtitles: </td>";
-    innertablestr += "<td>" + current_link.Link_Subtitles + "</td></tr>";
-
-    innertablestr += "<tr><td>Streamable: </td>";
-    innertablestr += "<td>" + current_link.Streamable + "</td></tr>";
-
-    innertablestr += "<tr><td>Password: </td>";
-    innertablestr += "<td>" + current_link.Link_Password + "</td></tr>";
-    innertablestr += "</tbody>";
-
-    //console.log(innertablestr);
-
-    $('#opened_links_table').html(innertablestr);
-    $('#episode_id_op_link').html(current_episode.Episode_Name);
-    CreateButtons(tvshow_link_id);
-    $('#Opened_Link_modal').modal('toggle');
-}
-
-function CreateButtons(tvshow_link_id){
-    for(let i=0; i<current_links.length; i++){
-        if(current_links[i].Link_Id == tvshow_link_id){
-            current_link = current_links[i];
+        else{
+            data += `<small>Add Google API Key to get more options</small>`
         }
     }
 
-    var innerbuttons = `
-        <button type="button" class="btn btn-primary w-100 mt-1" onclick="link_manipulation('` + current_link.Link_link + `')">Open Link</button><br>
-        <button type="button" class="btn btn-primary w-100 mt-1" onclick="link_manipulation('` + current_link.Link_link + `')">Copy Link</button><br>
-        <button type="button" class="btn btn-primary w-100 mt-1" onclick="link_manipulation('` + current_link.Link_link + `')">Open Link Incognito</button><br>
-        <button type="button" class="btn btn-primary w-100 mt-1" onclick="link_manipulation('` + current_link.Link_link + `')">Copy Link Incognito</button><br>
-        <button type="button" class="btn btn-primary w-100 mt-1" onclick="link_manipulation('` + current_link.Link_link + `')">Open API Link</button><br>
-        <button type="button" class="btn btn-primary w-100 mt-1" onclick="link_manipulation('` + current_link.Link_link + `')">Copy API Link</button><br>
-        <button type="button" class="btn btn-primary w-100 mt-1" onclick="link_manipulation('` + current_link.Link_link + `')">Open API Link Incognito</button><br>
-        <button type="button" class="btn btn-primary w-100 mt-1" onclick="link_manipulation('` + current_link.Link_link + `')">Copy API Link Incognito</button><br>
-    `; 
-
-    $("#div_links_buttons").html(innerbuttons);
-    console.log(current_link);
+    return data;
 }
 
-function link_manipulation(link){
-    window.open(link, '_blank').focus();
+function LinkButtonClicked(link, copy, api, play){
+    let FinalLink = "";
+    let googleAPI = getCookie("google_api_link_cookie");
+
+    if(api)
+        FinalLink = `https://www.googleapis.com/drive/v3/files/`+link.split("/")[5]+`?alt=media&key=`+googleAPI+``;
+    else
+        FinalLink = link;
+
+    if(play){
+        $("#videoPlayer").show();
+        $("#videoPlayerBody").html(generateEm(FinalLink, api));
+    }
+    else if(copy){
+        copyToClipBoard(FinalLink);
+    }
+    else{
+        openLink(FinalLink);
+    }
+}
+
+function generateEm(link, api){
+    let videoID = link.split("/")[5];
+    let data = ``;
+    if(api){
+        data=`
+            <video class="w-100" controls>
+                <source src="`+link+`" type="video/mp4">
+                Your browser does not support HTML video.
+            </video>
+        `
+    }
+    else{
+        data = `<iframe src="https://drive.google.com/file/d/`+videoID+`/preview" class="w-100" allow="autoplay"></iframe>`;
+    }
+
+    return data;
+}
+
+function hideDiv(id){
+    $(id).hide();
 }

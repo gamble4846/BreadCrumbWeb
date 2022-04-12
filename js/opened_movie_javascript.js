@@ -1,8 +1,3 @@
-var titles_data;
-var links_data;
-var movie_title_glob;
-var current_link;
-
 $( document ).ready(function() {
     $("#videoPlayer").hide();
     let db = new Localbase('BreadCrumb_Local_DB');
@@ -43,7 +38,6 @@ $( document ).ready(function() {
 });
 
 function Movie_Title_Manipulating(movie_title){
-    movie_title_glob = movie_title;
     $("#OpenedMovieName").html(movie_title.Movies_MainName);
     $("#backgroundImageURLDiv").css("background-image", `url("`+movie_title.Movies_Poster+`")`);
     $("#OpenedMovieDesc").html(movie_title.Movies_ExtraInformation);
@@ -65,7 +59,7 @@ function Movie_Links_Manipulating(current_links){
 
 function GetRow(number, link){
     let data = `
-        <div class="row pointer linkRow" data-bs-toggle="collapse" data-bs-target="#LinkCol`+link.Link_Id+`"">
+        <div class="row pointer linkRow" data-bs-toggle="collapse" data-bs-target="#LinkCol`+link.Link_Id+`">
             <div class="col-md-2 col-sm-2 col-2 ellipsis-g links-col-body">`+number+`</div>
             <div class="col-md-2 col-sm-3 col-3 ellipsis-g links-col-body">`+link.Link_Quality+`</div>
             <div class="col-md-2 col-sm-4 col-4 ellipsis-g links-col-body">`+link.Link_Language+`</div>

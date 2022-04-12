@@ -14,53 +14,97 @@
 </head>
 <body>
     <div id="header"></div>
-    <div class="container mt-5 mb-5">
-        <h3 class="pointer">Opened TvShows</h3>
-        <h5 id="tvshow_name"></h5>
-        <select id="seasons_select" class="form-control" onchange=Get_Current_Episdoes(this.value)></select>
-        <table class="table table-responsive" id="episodes_table">
-
-        </table>
-  
-        <div class="modal animate__animated animate__bounceInLeft fade" id="Links_modal" tabindex="-1">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="episode_name">Episode Name</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <table class="table table-responsive" id="links_table">
-                        </table>
+    <div class="head" id="backgroundImageURLDiv">
+        <div class="header-grid-container">
+            <div class="header-grid">
+                <div class="row">
+                    <div class="col-md-6 col-sm-12">
+                        <h1 id="OpenedSeriesName"></h1>
                     </div>
                 </div>
-            </div>
-        </div>
-
-        <div class="modal animate__animated animate__bounceInRight fade" id="Opened_Link_modal" tabindex="-1">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="episode_id_op_link">Episode Name</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <div class="row mb-5">
+                    <div class="col-md-6 col-sm-12">
+                        <p id="OpenedSeriesDesc"></p>
                     </div>
-                    <div class="modal-body">
-                        <table class="table table-responsive" id="opened_links_table">
-                        </table>
-                    </div>
-                    <div class="container p-2" id="div_links_buttons">
-                        
+                </div>
+                <div class="row">
+                    <div class="col-md-6 col-sm-12">
+                        <div class="row">
+                            <div class="col-3">
+                                Release Year
+                            </div>
+                            <div class="col-9">
+                                <p id="OpenedSeriesReleaseYear"></p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-3">
+                                Genere
+                            </div>
+                            <div class="col-9">
+                                <p id="OpenedSeriesGenre"></p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-3">
+                                Other Names
+                            </div>
+                            <div class="col-9">
+                                <p id="OpenedSeriesOtherNames"></p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    <div class="mt-4 container-fluid text-white">
+        <div class="row">
+            <div class="col-12 col-sm-6 col-md-3">
+                <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown">
+                        <span id="SelectedSeason"></span>
+                    </button>
+                    <ul class="dropdown-menu" id="seasonsOptions">
+                        <a class="dropdown-item" onclick="NewSeasonSelected(40)">Season 1</a>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-12 p-3">
+                <div class="row bold-g bg-lv5">
+                    <div class="col-2 col-md-1 ellipsis-g links-col-head">#</div>
+                    <div class="col-10 col-md-8 ellipsis-g links-col-head">Name</div>
+                    <div class="col-md-3 d-none d-md-block ellipsis-g links-col-head">Release Date</div>
+                </div>
+                <span id="epsiodesGrid">
+                </span>
+            </div>
+        </div>
+    </div>
+
+    <div class="videoPlayer w-100 p-3 bg-white" id="videoPlayer">
+        <div class="videoPlayerHeader">
+            <div class="row pb-4">
+                <div class="col-11 p-0">
+                    
+                </div>
+                <div class="col-1 text-end p-0">
+                    <i class="fa fa-times font-30 pointer" onclick="hideDiv('#videoPlayer')" aria-hidden="true"></i>
+                </div>
+            </div>
+        </div>
+        <div class="videoPlayerBody" id="videoPlayerBody">
+
+        </div>
+    </div>
+
     <div id="footer"></div>
     <!------------------JS----------------------->
     <script src="js/jquery-3.6.0.js"></script>
     <script src="js/bootstrap.bundle.js"></script>
     <script src="js/localbase.dev.js"></script>
     <script src="js/header_footer_loader.js"></script>
+    <script src="js/common_functions.js"></script>
     <script src="js/opened_tvshow_javascript.js"></script>
     <!------------------------------------------->
 </body>
