@@ -3,11 +3,13 @@ $(document).ready(function() {
     notify = new Notify();
     $("#script_link").val(getCookie("script_link_cookie"));
     $("#google_api_link").val(getCookie("google_api_link_cookie"));
+    $("#newTabSwitch").prop('checked', (String(getCookie("newTabSwitch_cookie").toUpperCase()) == "TRUE"));
 });
 
 function AddDataToCookie(){
     document.cookie = "script_link_cookie="+$("#script_link").val() + "; expires=Fri, 31 Dec 9999 23:59:59 GMT";
     document.cookie = "google_api_link_cookie="+$("#google_api_link").val() + "; expires=Fri, 31 Dec 9999 23:59:59 GMT";
+    document.cookie = "newTabSwitch_cookie="+$("#newTabSwitch").is(":checked") + "; expires=Fri, 31 Dec 9999 23:59:59 GMT";
     notify.render({
         head: `Database <i class="fas fa-bell"></i>`,
         content: "Settings Saved to Cookies",

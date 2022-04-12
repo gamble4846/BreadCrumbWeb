@@ -34,9 +34,19 @@ function getCookie(name) {
 };
 
 function copyToClipBoard(STR){
-    var $temp = $("<input>");
-    $("body").append($temp);
-    $temp.val($(element).text()).select();
-    document.execCommand("copy");
-    $temp.remove();
+    navigator.clipboard.writeText(STR).then(function() {
+        console.log('Async: Copying to clipboard was successful!');
+    }, function(err) {
+        console.error('Async: Could not copy text: ', err);
+    });
+}
+
+function openLink(link){
+    console.log((String(getCookie("newTabSwitch_cookie").toUpperCase()) == "TRUE"));
+    if((String(getCookie("newTabSwitch_cookie").toUpperCase()) == "TRUE")){
+        window.open(link, "_blank");
+    }
+    else{
+        window.open(link, "_self");
+    }
 }

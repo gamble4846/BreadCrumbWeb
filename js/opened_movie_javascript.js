@@ -158,6 +158,12 @@ function LinkButtonClicked(link, copy, api, play){
         $("#videoPlayer").show();
         $("#videoPlayerBody").html(generateEm(FinalLink, api));
     }
+    else if(copy){
+        copyToClipBoard(FinalLink);
+    }
+    else{
+        openLink(FinalLink);
+    }
 }
 
 function generateEm(link, api){
